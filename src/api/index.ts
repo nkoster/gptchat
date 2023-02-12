@@ -10,8 +10,9 @@ export async function gptchat(prompt: string, responses: Response[]): Promise<st
     body: JSON.stringify({
       model: "text-davinci-003",
       prompt: responses.reduce(
-        (acc, cur) => 'Question: ' + cur.question +
-          '\nAnswer: ' + cur.answer + '\n' + acc, '') + '\nQuestion: ' + prompt,
+        (acc, cur) => cur.question +
+          '\n' + cur.answer + '\n' + acc, ''
+      ) + '\n' + prompt,
       max_tokens: 1000,
       n: 1,
       stop: null,
