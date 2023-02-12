@@ -1,4 +1,4 @@
-import React, { useReducer, createContext, ReactNode } from 'react'
+import { useReducer, createContext, ReactNode, FC, Dispatch } from 'react'
 
 export interface Response {
   question: string
@@ -36,10 +36,10 @@ const reducer = (state: State, action: Action): State => {
   }
 }
 
-const StateContext = createContext<[State, React.Dispatch<Action>]>([initialState, () => {
+const StateContext = createContext<[State, Dispatch<Action>]>([initialState, () => {
 }])
 
-const StateProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+const StateProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   return (
